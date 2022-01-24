@@ -7,7 +7,7 @@ from rich.console import Console as RichConsole
 class Console(RichConsole):
     def debug(self, *args, **kwargs):
         if os.environ.get('DEBUG', "false").lower() in {"t", "true"}:
-            self.log(":bug:", *args, emoji=True, **kwargs)
+            self.log(":bug:", *args, emoji=True, _stack_offset=2, **kwargs)
 
     def warn(self, *args, **kwargs):
         self.print(":exclamation:", *args, emoji=True, **kwargs)
@@ -21,6 +21,7 @@ class Console(RichConsole):
     def exit(self, *args, code=0, **kwargs):
         self.print(":door:", *args, "Exiting...", emoji=True, **kwargs)
         sys.exit(code)
+
 
 def init_console():
     global console
